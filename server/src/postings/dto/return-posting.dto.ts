@@ -5,6 +5,10 @@ import { Exclude, Expose } from 'class-transformer';
 export class ReturnPostingDto {
   @ApiProperty()
   @Expose()
+  id: number;
+
+  @ApiProperty()
+  @Expose()
   userId: number;
 
   @ApiProperty()
