@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryColumn } from 'typeorm';
+import { BaseEntity, BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
   @ApiProperty()
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @ApiProperty()
@@ -19,6 +19,10 @@ export class User extends BaseEntity {
   @ApiProperty()
   @Column()
   password: string;
+
+  @ApiProperty()
+  @CreateDateColumn()
+  createdAt: Date;
 
   @BeforeInsert()
   @BeforeUpdate()
