@@ -11,7 +11,7 @@ export class PostingsService {
 
   async getOneById(id: number): Promise<Posting | null> {
     try {
-      const posting = this.postingsRepository.findOneOrFail({ id });
+      const posting = await this.postingsRepository.findOneOrFail({ id }, { relations: ['comments'] });
       return posting;
     } catch (err) {
       return null;
