@@ -3,6 +3,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiConsumes, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { plainToClass } from 'class-transformer';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CommentsService } from 'src/comments/comments.service';
+import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 import { CreatePostingDto } from './dto/create-posting.dto';
 import { ReturnPostingDto } from './dto/return-posting.dto';
 import { UpdatePostingDto } from './dto/update-posting.dto';
@@ -12,7 +14,14 @@ import { PostingsService } from './postings.service';
 @ApiTags('postings')
 @Controller('postings')
 export class PostingsController {
-  constructor(private postingsService: PostingsService) {}
+  constructor(private postingsService: PostingsService, private commentsService: CommentsService) {}
+
+  @Get()
+  @ApiOkResponse({ type: Posting, isArray: true })
+  async getAllPostings(): Promise<ReturnPostingDto[]> {
+    const postings = await this.postingsService.getAll();
+    return plainToClass(ReturnPostingDto, postings);
+  }
 
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -34,15 +43,32 @@ export class PostingsController {
     return plainToClass(ReturnPostingDto, posting);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/:id')
   async editPosting(@Param('id') id: number, @Body() body: UpdatePostingDto): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.updatePosting(id, body);
     return plainToClass(ReturnPostingDto, posting);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   async deletePosting(@Param('id') id: number): Promise<ReturnPostingDto> {
-    const posting = await this.deletePosting(id);
+    const posting = await this.postingsService.deletePosting(id);
     return plainToClass(ReturnPostingDto, posting);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('/:id/comments')
+  async createComment(@Param('id') postId: number, @Req() req, @Body() body: CreateCommentDto): Promise<ReturnPostingDto> {
+    const posting = await this.postingsService.getOneById(postId);
+    const comment = await this.commentsService.createComment(req.user.id, body, posting);
+    return this.getPosting(postId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete(':id/comments/:commentId')
+  async deleteComment(@Param('id') postId: number, @Param('commentId') commentId: number): Promise<ReturnPostingDto> {
+    const comment = await this.commentsService.deleteComment(commentId);
+    return this.getPosting(postId);
   }
 }

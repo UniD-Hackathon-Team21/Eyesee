@@ -1,13 +1,15 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ReturnUserDto } from 'src/users/dto/return-user.dto';
-import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { UpdatePostingDto } from './dto/update-posting.dto';
 import { Posting } from './entities/posting.entity';
 @Injectable()
 export class PostingsService {
   constructor(@InjectRepository(Posting) private postingsRepository: Repository<Posting>) {}
+
+  async getAll(): Promise<Posting[]> {
+    return this.postingsRepository.find({ relations: ['comments'] });
+  }
 
   async getOneById(id: number): Promise<Posting | null> {
     try {
@@ -32,7 +34,7 @@ export class PostingsService {
     }
   }
 
-  async deleteUser(id: number): Promise<Posting> {
+  async deletePosting(id: number): Promise<Posting> {
     const posting = await this.getOneById(id);
     return await this.postingsRepository.remove(posting);
   }
