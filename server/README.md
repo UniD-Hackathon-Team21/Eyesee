@@ -46,6 +46,13 @@ $ npm install
 $ npm run migration:run
 ```
 
+### Configure .env File
+
+```
+TOKEN_KEY={random string}
+TOKEN_EXPIRY=6h
+```
+
 #### Running the app
 
 ```bash
