@@ -1,14 +1,19 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { UpdatePostingDto } from './dto/update-posting.dto';
 import { Posting } from './entities/posting.entity';
 @Injectable()
 export class PostingsService {
-  constructor(@InjectRepository(Posting) private postingsRepository: Repository<Posting>) {}
+  constructor(@InjectRepository(Posting) private postingsRepository: Repository<Posting>, private usersService: UsersService) {}
 
   async getAll(): Promise<Posting[]> {
     return this.postingsRepository.find({ relations: ['comments'] });
+  }
+
+  async getAllByCategory(category: string): Promise<Posting[]> {
+    return this.postingsRepository.find({ where: { category }, relations: ['comments'] });
   }
 
   async getOneById(id: number): Promise<Posting | null> {
@@ -22,6 +27,7 @@ export class PostingsService {
 
   async createPosting(text: string, category: string, imgPath: string, userId: number): Promise<Posting> {
     const newPosting = this.postingsRepository.create({ text, category, imgPath, userId });
+    await this.usersService.addPoints(userId, 1);
     return await this.postingsRepository.save(newPosting);
   }
 
