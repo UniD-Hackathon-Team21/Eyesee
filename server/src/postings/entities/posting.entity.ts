@@ -1,8 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Check, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Comment } from '../../comments/entities/comment.entity';
 
 @Entity({ name: 'postings' })
+@Check(
+  `"category" = 'engineering' OR "category" = 'natural science' OR "category" = 'medicine' OR "category" = 'humanities' OR "category" = 'economics' OR "category" = 'art' OR "category" = 'sports' OR "category" = 'social science' OR "category" = 'agriculture' OR "category" = 'law'`,
+)
 export class Posting extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()

@@ -26,6 +26,21 @@ export class PostingsService {
   }
 
   async createPosting(text: string, category: string, imgPath: string, userId: number): Promise<Posting> {
+    const availableCategories = [
+      'engineering',
+      'natural science',
+      'medicine',
+      'humanities',
+      'economics',
+      'art',
+      'sports',
+      'social science',
+      'agriculture',
+      'law',
+    ];
+    if (!availableCategories.includes(category)) {
+      throw new HttpException('Invalid category', HttpStatus.BAD_REQUEST);
+    }
     const newPosting = this.postingsRepository.create({ text, category, imgPath, userId });
     await this.usersService.addPoints(userId, 1);
     return await this.postingsRepository.save(newPosting);

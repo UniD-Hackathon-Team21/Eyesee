@@ -20,7 +20,6 @@ export class CommentsService {
 
   async createComment(userId: number, createCommentDto: CreateCommentDto, posting: Posting): Promise<Comment> {
     const newComment = await this.commentsRepository.create({ userId, content: createCommentDto.content, posting });
-    newComment.likedUsers = [];
     return await this.commentsRepository.save(newComment);
   }
 
