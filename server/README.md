@@ -27,6 +27,13 @@ server
 $ cd server
 ```
 
+#### Git Config
+
+```bash
+# db 변경사항이 github에 푸쉬되지 않도록
+git update-index --assume-unchanged dev.db
+```
+
 #### Installation
 
 ```bash
@@ -45,6 +52,10 @@ $ npm run migration:run
 # development
 $ npm run start
 ```
+
+## Server Running On
+
+- http://localhost:80/
 
 ## API Documentation
 
