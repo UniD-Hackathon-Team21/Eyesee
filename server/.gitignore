@@ -39,6 +39,3 @@ lerna-debug.log*
 
 # Uploads
 /uploads
-
-# DB
-dev.db
