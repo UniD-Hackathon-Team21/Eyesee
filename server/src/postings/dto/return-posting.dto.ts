@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
+import { Comment } from 'src/comments/entities/comment.entity';
 
 @Exclude()
 export class ReturnPostingDto {

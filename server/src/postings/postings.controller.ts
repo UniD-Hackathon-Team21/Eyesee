@@ -8,7 +8,6 @@ import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 import { CreatePostingDto } from './dto/create-posting.dto';
 import { ReturnPostingDto } from './dto/return-posting.dto';
 import { UpdatePostingDto } from './dto/update-posting.dto';
-import { Posting } from './entities/posting.entity';
 import { PostingsService } from './postings.service';
 
 @ApiTags('postings')
@@ -17,7 +16,7 @@ export class PostingsController {
   constructor(private postingsService: PostingsService, private commentsService: CommentsService) {}
 
   @Get()
-  @ApiOkResponse({ type: Posting, isArray: true })
+  @ApiOkResponse({ type: ReturnPostingDto, isArray: true })
   async getAllPostings(): Promise<ReturnPostingDto[]> {
     const postings = await this.postingsService.getAll();
     return plainToClass(ReturnPostingDto, postings);
@@ -31,19 +30,21 @@ export class PostingsController {
     }),
   )
   @ApiConsumes('multipart/form-data')
-  @ApiOkResponse({ type: Posting })
+  @ApiOkResponse({ type: ReturnPostingDto })
   async createPosting(@Req() req, @UploadedFile() file: Express.Multer.File, @Body() body: CreatePostingDto): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.createPosting(body.text, body.category, file.path, req.user.id);
     return plainToClass(ReturnPostingDto, posting);
   }
 
   @Get('/category/:category')
+  @ApiOkResponse({ type: ReturnPostingDto, isArray: true })
   async getPostingsCategory(@Param('category') category: string): Promise<ReturnPostingDto[]> {
     const postings = await this.postingsService.getAllByCategory(category);
     return plainToClass(ReturnPostingDto, postings);
   }
 
   @Get('/:id')
+  @ApiOkResponse({ type: ReturnPostingDto })
   async getPosting(@Param('id') id: number): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.getOneById(id);
     return plainToClass(ReturnPostingDto, posting);
@@ -51,6 +52,7 @@ export class PostingsController {
 
   @UseGuards(JwtAuthGuard)
   @Put('/:id')
+  @ApiOkResponse({ type: ReturnPostingDto })
   async editPosting(@Param('id') id: number, @Body() body: UpdatePostingDto): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.updatePosting(id, body);
     return plainToClass(ReturnPostingDto, posting);
@@ -58,6 +60,7 @@ export class PostingsController {
 
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
+  @ApiOkResponse({ type: ReturnPostingDto })
   async deletePosting(@Param('id') id: number): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.deletePosting(id);
     return plainToClass(ReturnPostingDto, posting);
@@ -65,6 +68,7 @@ export class PostingsController {
 
   @UseGuards(JwtAuthGuard)
   @Post('/:id/comments')
+  @ApiOkResponse({ type: ReturnPostingDto })
   async createComment(@Param('id') postId: number, @Req() req, @Body() body: CreateCommentDto): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.getOneById(postId);
     const comment = await this.commentsService.createComment(req.user.id, body, posting);
@@ -73,6 +77,7 @@ export class PostingsController {
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id/comments/:commentId')
+  @ApiOkResponse({ type: ReturnPostingDto })
   async deleteComment(@Param('id') postId: number, @Param('commentId') commentId: number): Promise<ReturnPostingDto> {
     const posting = await this.getPosting(postId);
     const comment = await this.commentsService.deleteComment(commentId);
@@ -81,7 +86,8 @@ export class PostingsController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/:id/comments/:commentId/like')
-  async likeComment(@Param('id') postId: number, @Param('commentId') commentId: number, @Req() req) {
+  @ApiOkResponse({ type: ReturnPostingDto })
+  async likeComment(@Param('id') postId: number, @Param('commentId') commentId: number, @Req() req): Promise<ReturnPostingDto> {
     const posting = await this.getPosting(postId);
     const comment = await this.commentsService.likeComment(commentId, req.user.email);
     return this.getPosting(posting.id);
