@@ -29,7 +29,7 @@ export class CommentsService {
     return await this.commentsRepository.remove(comment);
   }
 
-  async likeComment(id: number, userEmail: string): Promise<Comment | null> {
+  async likeComment(id: number, userEmail: string): Promise<Comment> {
     const comment = await this.getOneById(id);
     if (comment.likedUsers.includes(userEmail)) {
       throw new HttpException('User already liked this comment', HttpStatus.BAD_REQUEST);
