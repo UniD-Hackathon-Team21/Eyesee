@@ -25,7 +25,5 @@ class PointsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-
     }
 }
