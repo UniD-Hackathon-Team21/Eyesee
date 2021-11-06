@@ -8,6 +8,9 @@ server
 │   ├── auth
 │   │   ├── guards
 │   │   └── strategies
+│   ├── comments
+│   │   ├── dto
+│   │   └── entities
 │   ├── db
 │   │   └── migrations
 │   ├── postings
@@ -16,7 +19,8 @@ server
 │   └── users
 │       ├── dto
 │       └── entities
-└── test
+├── test
+└── uploads
 ```
 
 ## How to Start
