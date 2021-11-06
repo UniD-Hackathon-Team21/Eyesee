@@ -10,22 +10,42 @@
         android:id="@+id/imageView"
         android:layout_width="44dp"
         android:layout_height="42dp"
-        app:srcCompat="@drawable/user_icon"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="62dp" />
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.756"
+        app:srcCompat="@drawable/user_icon" />
 
     <View
         android:id="@+id/view"
         android:layout_width="325dp"
         android:layout_height="210dp"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="120dp" />
+        android:background="@color/background"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="319dp"
-        android:layout_height="229dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="346dp"
+        android:layout_width="325dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="176dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="152쪽 그림23 설명 부탁드립니다!"
+        android:textSize="15sp"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="162dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

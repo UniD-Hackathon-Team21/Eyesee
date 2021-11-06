@@ -12,7 +12,5 @@ class PostingDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPostingDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        imageView2.visiblity = VIEW.invisible
     }
 }
