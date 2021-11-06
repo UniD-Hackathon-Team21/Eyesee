@@ -24,19 +24,7 @@ class PointsActivity : AppCompatActivity() {
         binding = ActivityPointsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var plus = findViewById<Button>(R.id.plus_btn)
-        val output = findViewById<TextView>(R.id.points)
-        val output_text : String = "points";
-        var num = 0;
 
-        plus.setOnClickListener{
-            num++
-            output.setText(num.toString() + output_text)
-        }
-    }
-
-    private fun loadDate(){
-        val pref = this.getPreferences(0) // 저장된 값이 없으면 0가져오기
 
 
     }
