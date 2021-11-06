@@ -16,6 +16,18 @@ export class Comment extends BaseEntity {
   @Column()
   content: string;
 
+  @ApiProperty()
+  @Column({ default: 0 })
+  likes: number;
+
+  @ApiProperty()
+  @Column({ type: 'simple-array', array: true, nullable: true })
+  likedUsers: string[];
+
+  @ApiProperty()
+  @Column({ default: 0 })
+  reports: number;
+
   @ApiProperty({ type: () => Posting })
   @ManyToOne((type) => Posting, (posting) => posting.comments)
   posting: Posting;
