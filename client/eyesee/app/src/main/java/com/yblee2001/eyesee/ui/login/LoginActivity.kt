@@ -22,11 +22,15 @@ class LoginActivity : AppCompatActivity() {
         val id: String = binding.idEditText.getText().toString()
         val password: String = binding.passwordEditText.getText().toString()
 
-        binding.btnLogin.setOnClickListener {
+        binding.loginButton.setOnClickListener {
             // TODO: networking
 
             // temp
             startActivity(MainActivity.createIntent(this.applicationContext))
+        }
+
+        binding.signUpButton.setOnClickListener {
+            startActivity(SignUpActivity.createIntent(this.applicationContext))
         }
     }
 }
