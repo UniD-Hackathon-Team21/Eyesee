@@ -21,6 +21,10 @@ export class User extends BaseEntity {
   password: string;
 
   @ApiProperty()
+  @Column({ default: 0 })
+  points: number;
+
+  @ApiProperty()
   @CreateDateColumn()
   createdAt: Date;
 

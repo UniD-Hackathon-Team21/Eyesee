@@ -16,12 +16,12 @@ export class PostingsService {
     return this.postingsRepository.find({ where: { category }, relations: ['comments'] });
   }
 
-  async getOneById(id: number): Promise<Posting | null> {
+  async getOneById(id: number): Promise<Posting> {
     try {
       const posting = await this.postingsRepository.findOneOrFail({ id }, { relations: ['comments'] });
       return posting;
     } catch (err) {
-      return null;
+      throw new HttpException('Posting not found', HttpStatus.NOT_FOUND);
     }
   }
 
@@ -33,11 +33,7 @@ export class PostingsService {
 
   async updatePosting(id: number, updatePostingDto: UpdatePostingDto): Promise<any> {
     const posting = this.getOneById(id);
-    if (posting) {
-      return await this.postingsRepository.save(Object.assign(posting, updatePostingDto));
-    } else {
-      throw new HttpException('Posting not found', HttpStatus.NOT_FOUND);
-    }
+    return await this.postingsRepository.save(Object.assign(posting, updatePostingDto));
   }
 
   async deletePosting(id: number): Promise<Posting> {

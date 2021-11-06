@@ -68,20 +68,22 @@ export class PostingsController {
   async createComment(@Param('id') postId: number, @Req() req, @Body() body: CreateCommentDto): Promise<ReturnPostingDto> {
     const posting = await this.postingsService.getOneById(postId);
     const comment = await this.commentsService.createComment(req.user.id, body, posting);
-    return this.getPosting(postId);
+    return this.getPosting(posting.id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id/comments/:commentId')
   async deleteComment(@Param('id') postId: number, @Param('commentId') commentId: number): Promise<ReturnPostingDto> {
+    const posting = await this.getPosting(postId);
     const comment = await this.commentsService.deleteComment(commentId);
-    return this.getPosting(postId);
+    return this.getPosting(posting.id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('/:id/comments/:commentId/like')
   async likeComment(@Param('id') postId: number, @Param('commentId') commentId: number, @Req() req) {
+    const posting = await this.getPosting(postId);
     const comment = await this.commentsService.likeComment(commentId, req.user.email);
-    return this.getPosting(postId);
+    return this.getPosting(posting.id);
   }
 }
