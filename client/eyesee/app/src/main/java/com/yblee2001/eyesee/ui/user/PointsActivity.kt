@@ -23,12 +23,9 @@ class PointsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPointsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
     private fun loadDate(){
         val pref = this.getPreferences(0) // 저장된 값이 없으면 0가져오기
-
-
     }
 }
