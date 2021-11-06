@@ -52,9 +52,17 @@ export class UsersService {
       return await this.usersRepository.save(newUser);
     }
   }
-  // Todo: make sure that user does not use the same password as before
+
   async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<any> {
     const user = await this.getOneById(id);
+
+    // If email is changed, check if email is unique
+    if (!updateUserDto.email === undefined) {
+      const unique = await this.checkIfUnique(updateUserDto.email);
+      if (!unique) {
+        throw new HttpException('Email already in use', HttpStatus.CONFLICT);
+      }
+    }
     return await this.usersRepository.save(Object.assign(user, updateUserDto));
   }
 
