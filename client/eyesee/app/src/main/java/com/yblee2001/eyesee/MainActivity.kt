@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_menu_postings -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace<PostingsFragment>(R.id.bottom_menu_postings)
+                        replace<PostingsFragment>(R.id.fragment_container_view)
                     }
                     Timber.d("POSTINGS")
                     true
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_menu_user -> {
                     supportFragmentManager.commit {
                         setReorderingAllowed(true)
-                        replace<UserFragment>(R.id.bottom_menu_user)
+                        replace<UserFragment>(R.id.fragment_container_view)
                     }
                     Timber.d("USER")
                     true
