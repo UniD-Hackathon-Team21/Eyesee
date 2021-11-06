@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Posting } from '../../postings/entities/posting.entity';
 
 @Entity({ name: 'comment' })
@@ -35,4 +35,9 @@ export class Comment extends BaseEntity {
   @ApiProperty()
   @CreateDateColumn()
   createdAt: Date;
+
+  @BeforeInsert()
+  initializeArray() {
+    this.likedUsers = [];
+  }
 }
