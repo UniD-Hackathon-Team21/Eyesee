@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.login.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.login.SignUpActivity">
         </activity>
         <activity android:name=".ui.postings.NewPostingActivity" />
-        <activity android:name=".ui.postings.PostingDetailActivity" />
+        <activity android:name=".ui.postings.PostingDetailActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
         <activity android:name=".ui.postings.PostingsActivity"/>
         <activity android:name=".ui.user.MyPostingsActivity" />
         <activity android:name=".ui.user.PointsActivity"/>

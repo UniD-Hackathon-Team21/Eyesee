@@ -11,12 +11,13 @@
         android:layout_width="44dp"
         android:layout_height="42dp"
         android:layout_marginTop="72dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/post_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333"
+        app:layout_constraintVertical_bias="0.705"
         app:srcCompat="@drawable/user_icon" />
 
     <View
@@ -27,19 +28,18 @@
         android:background="@color/background"
         app:layout_constraintBottom_toTopOf="@+id/image_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="325dp"
         android:layout_height="220dp"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="282dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
@@ -59,8 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp"
         android:background="#00FF0000"
         android:text="수정"
         android:textColor="@color/grey"
@@ -68,23 +68,20 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/post_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toEndOf="@+id/user_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/report_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FF0000"
-        android:text="신고"
-        android:textColor="@color/grey"
-        android:textSize="18dp"
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="26dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/post_view"
         app:layout_constraintEnd_toStartOf="@+id/edit_button"
-        app:layout_constraintHorizontal_bias="0.132"
-        app:layout_constraintStart_toEndOf="@+id/user_icon"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
+        app:layout_constraintVertical_bias="0.951"
+        app:srcCompat="@drawable/report_icon" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
