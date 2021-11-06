@@ -19,5 +19,9 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.logoutButton.setOnClickListener {
+            // TODO: networking
+        }
+
     }
 }
