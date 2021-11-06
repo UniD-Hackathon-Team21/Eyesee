@@ -52,32 +52,27 @@
         android:id="@+id/sign_up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="5dp"
         android:backgroundTint="#00FF0000"
         android:text="회원가입"
         android:textColor="@color/grey"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-<<<<<<< HEAD
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/register_phrase"
         app:layout_constraintVertical_bias="0.05" />
-=======
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/register_phrase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="25dp"
         android:text="아직 회원이 아니신가요?"
         android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/register_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
   
->>>>>>> 1af3a4ca503b0598acb5a04d37d4fd5c0a1aec4d
 </androidx.constraintlayout.widget.ConstraintLayout>
