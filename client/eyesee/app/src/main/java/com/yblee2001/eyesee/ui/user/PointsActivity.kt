@@ -1,5 +1,8 @@
 package com.yblee2001.eyesee.ui.user
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Point
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.widget.Button
@@ -9,6 +12,10 @@ import com.yblee2001.eyesee.R
 import com.yblee2001.eyesee.databinding.ActivityPointsBinding
 
 class PointsActivity : AppCompatActivity() {
+
+    companion object {
+        fun createIntent(context: Context) = Intent(context, PointsActivity::class.java)
+    }
 
     private lateinit var binding: ActivityPointsBinding
 
