@@ -1,4 +1,5 @@
 # Dev configs
 .idea
 client/.idea
+client/eyesee/.idea
 .vscode
