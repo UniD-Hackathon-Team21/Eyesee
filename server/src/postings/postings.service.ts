@@ -16,6 +16,10 @@ export class PostingsService {
     return this.postingsRepository.find({ where: { category }, relations: ['comments'] });
   }
 
+  async getAllByUser(userId: number): Promise<Posting[]> {
+    return this.postingsRepository.find({ where: { userId }, relations: ['comments'] });
+  }
+
   async getOneById(id: number): Promise<Posting> {
     try {
       const posting = await this.postingsRepository.findOneOrFail({ id }, { relations: ['comments'] });

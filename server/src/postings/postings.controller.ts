@@ -43,6 +43,14 @@ export class PostingsController {
     return plainToClass(ReturnPostingDto, postings);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('/me')
+  @ApiOkResponse({ type: ReturnPostingDto, isArray: true })
+  async getPostingsByUser(@Req() req): Promise<ReturnPostingDto[]> {
+    const postings = await this.postingsService.getAllByUser(req.user.id);
+    return plainToClass(ReturnPostingDto, postings);
+  }
+
   @Get('/:id')
   @ApiOkResponse({ type: ReturnPostingDto })
   async getPosting(@Param('id') id: number): Promise<ReturnPostingDto> {
