@@ -9,51 +9,55 @@
 
     <EditText
         android:id="@+id/contents"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_width="329dp"
+        android:layout_height="53dp"
         android:layout_marginTop="40dp"
         android:hint="내용을 입력해주세요"
-        app:layout_constraintBottom_toTopOf="@+id/contents_text"
+        app:layout_constraintBottom_toTopOf="@+id/contenttext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.898" />
 
-    <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/camera_icon"
-        app:layout_constraintEnd_toStartOf="@+id/contents_text"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contents" />
-
-    <TextView
-        android:id="@+id/contents_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="600dp"
-        android:text="/400자"
+    <EditText
+        android:id="@+id/contenttext"
+        android:layout_width="61dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="36dp"
+        android:hint=" /400자"
+        android:textSize="35px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.296" />
 
     <Button
-        android:id="@+id/contents_post"
+        android:id="@+id/contentpost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="글 올리기"
         android:backgroundTint="@color/main"
+        android:text="글 올리기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contents"
-        app:layout_constraintVertical_bias="0.137" />
+        app:layout_constraintVertical_bias="0.623" />
+
+    <ImageButton
+        android:id="@+id/camera"
+        android:layout_width="53dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="244dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/contentpost"
+        app:layout_constraintEnd_toStartOf="@+id/contenttext"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contents"
+        app:layout_constraintVertical_bias="0.444"
+        app:srcCompat="@drawable/camera_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

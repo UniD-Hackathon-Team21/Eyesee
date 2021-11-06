@@ -13,5 +13,12 @@ class NewPostingActivity : AppCompatActivity() {
         binding = ActivityNewPostingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.camera.setOnClickListener {
+
+        }
+
+        binding.contentpost.setOnClickListener {
+
+        }
     }
 }
