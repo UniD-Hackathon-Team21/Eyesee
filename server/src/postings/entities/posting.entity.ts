@@ -24,8 +24,12 @@ export class Posting extends BaseEntity {
   @Column()
   category: string;
 
-  @ApiProperty({ type: () => Comment, isArray: true, nullable: true })
-  @OneToMany((type) => Comment, (comment) => comment.posting)
+  @ApiProperty()
+  @Column({ default: 0 })
+  reports: number;
+
+  @ApiProperty({ type: () => Comment, isArray: true })
+  @OneToMany((type) => Comment, (comment) => comment.posting, { cascade: true })
   comments: Comment[];
 
   @ApiProperty()

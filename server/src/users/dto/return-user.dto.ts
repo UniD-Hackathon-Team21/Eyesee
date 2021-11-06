@@ -14,4 +14,8 @@ export class ReturnUserDto {
   @ApiProperty()
   @Expose()
   email: string;
+
+  @ApiProperty()
+  @Expose()
+  points: number;
 }
