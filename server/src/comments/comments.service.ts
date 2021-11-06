@@ -4,10 +4,11 @@ import { Posting } from 'src/postings/entities/posting.entity';
 import { Comment } from './entities/comment.entity';
 import { Repository } from 'typeorm';
 import { CreateCommentDto } from './dto/create-comment.dto';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class CommentsService {
-  constructor(@InjectRepository(Comment) private commentsRepository: Repository<Comment>) {}
+  constructor(@InjectRepository(Comment) private commentsRepository: Repository<Comment>, private usersService: UsersService) {}
 
   async getOneById(id: number): Promise<Comment> {
     try {
@@ -20,6 +21,7 @@ export class CommentsService {
 
   async createComment(userId: number, createCommentDto: CreateCommentDto, posting: Posting): Promise<Comment> {
     const newComment = await this.commentsRepository.create({ userId, content: createCommentDto.content, posting });
+    await this.usersService.addPoints(userId, 2);
     return await this.commentsRepository.save(newComment);
   }
 
