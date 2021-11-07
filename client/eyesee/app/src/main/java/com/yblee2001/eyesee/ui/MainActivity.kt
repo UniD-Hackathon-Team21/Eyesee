@@ -12,8 +12,10 @@ import com.yblee2001.eyesee.databinding.ActivityMainBinding
 import com.yblee2001.eyesee.ui.postings.PostingsFragment
 import com.yblee2001.eyesee.ui.user.MyPostingsActivity
 import com.yblee2001.eyesee.ui.user.UserFragment
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     companion object {

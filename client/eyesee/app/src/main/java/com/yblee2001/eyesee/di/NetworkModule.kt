@@ -2,6 +2,10 @@ package com.yblee2001.eyesee.di
 
 import com.squareup.moshi.Moshi
 import com.yblee2001.eyesee.BuildConfig
+import com.yblee2001.eyesee.service.PostingService
+import com.yblee2001.eyesee.service.UserService
+import com.yblee2001.eyesee.service.retrofit.PostingRetrofitService
+import com.yblee2001.eyesee.service.retrofit.UserRetrofitService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,7 +48,17 @@ class NetworkModule {
             .baseUrl(baseURL)
             .build()
 
-    // API functions
+    // creates retrofit & provide services
+    @Provides
+    @Singleton
+    fun provideUserService(retrofit: Retrofit): UserService {
+        return UserService(retrofit.create(UserRetrofitService::class.java))
+    }
 
+    @Provides
+    @Singleton
+    fun providePostingService(retrofit: Retrofit): PostingService {
+        return PostingService(retrofit.create(PostingRetrofitService::class.java))
+    }
 
 }

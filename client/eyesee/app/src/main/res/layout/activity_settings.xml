@@ -22,9 +22,11 @@
         android:id="@+id/textView"
         android:layout_width="329dp"
         android:layout_height="135dp"
+        android:layout_marginTop="150dp"
         android:gravity="center"
         android:text="장애 학생들의 강의 자료에 대한 이해를 돕기 위해 자료 일부에 대한 질문 글을 게시하면, 비장애 학생들이 자료에 대한 설명 또는 해설을 달아주는 애플리케이션입니다."
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

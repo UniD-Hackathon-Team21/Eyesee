@@ -4,4 +4,5 @@ data class ReturnUserDto (
     val id: Int,
     val name: String,
     val email: String,
+    val points: Int,
 )

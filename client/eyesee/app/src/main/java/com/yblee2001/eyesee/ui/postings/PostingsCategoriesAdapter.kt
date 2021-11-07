@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yblee2001.eyesee.R
 import com.yblee2001.eyesee.ui.user.MyPostingsActivity
 import kotlinx.android.synthetic.main.item_category.view.*
+import timber.log.Timber
 
 class PostingsCategoriesAdapter(private val context: Context) :
     RecyclerView.Adapter<PostingsCategoriesViewHolder>() {
@@ -29,11 +30,10 @@ class PostingsCategoriesAdapter(private val context: Context) :
 
         // set item view
         holder.name.text = category
+        Timber.d(category)
         holder.itemView.setOnClickListener{
             // TODO: category query
-
-            // DUMMY
-            context.startActivity(PostingsActivity.createIntent(context))
+            context.startActivity(PostingsActivity.createIntent(context, category))
         }
     }
 }
