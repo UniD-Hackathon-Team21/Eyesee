@@ -49,6 +49,7 @@ class NewPostingActivity : AppCompatActivity() {
 
         binding.submitButton.setOnClickListener {
             val text = binding.content.text.toString()
+            finish()
 //            viewModel.createPosting(text, category, null)
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe({
